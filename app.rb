@@ -12,7 +12,7 @@ get('/') do
   erb(:index)
 end
 
-get('/recipe') do
+get('/recipes') do
   @recipes = Recipe.all()
   @rating_list = Recipe.order(rating: :asc)
   erb(:recipe_list)

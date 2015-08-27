@@ -1,0 +1,30 @@
+<h1>Here are your recipes!</h1>
+
+<a href="/">Return To Home</a>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+  <li><a href="/recipe/<%= recipe.id %>">Recipe Name: <%= recipe.name %></a></li>
+  <% recipe.categories.each do |category| %>
+  <li>Category:<%= category.name() %></li>
+  <% end %>
+  <% end %>
+</ul>
+
+<h4>Add a recipe below:</h4>
+
+<form action="/add_recipe" method="post">
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Submit</button>
+</form>
+
+<h3>Recipes listed by their rating(1 - 5)</h3>
+
+<% @rating_list.each do |recipe| %>
+ <% if recipe.rating() == 0 %>
+  <li><%= recipe.name %> has no rating</li>
+  <% else %>
+  <li><% recipe.rating() %> - <%= recipe.name() %></li>
+  <% end %>
+  <% end %>
