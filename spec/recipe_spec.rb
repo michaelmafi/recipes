@@ -7,7 +7,7 @@ describe(Recipe) do
      test_ingredient = Ingredient.create({:name => "tomato"})
      test_recipe = Recipe.new({:name => "Sauce",:instruction => "Just cut it and juice it"})
      test_recipe.ingredients.push(test_ingredient)
-     expect(test_recipe.ingredients).to(eq([test_ingredients]))
+     expect(test_recipe.ingredients).to(eq([test_ingredient]))
    end
  end
 
