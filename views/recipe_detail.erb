@@ -1,0 +1,81 @@
+<h1>Here are the details for this recipe:</h1>
+
+<a href="/recipes">Return to recipe list</a>
+
+ <h3>The ingredients are:</h3>
+   <% if @recipe.ingredients == [] %>
+   <p>There are no ingredients for this recipe</p>
+   <% else %>
+   <ul>
+     <% @recipe.ingredients.each() do |ingredient| %>
+     <li>s
+       <% ingredient.name()  %>
+     </li>
+     <% end %>
+   </ul>
+   <% end %>
+
+   <h1>Add an ingredient below:</h1>
+
+
+      <form action="/add_ingredient/<% @recipe.id %>" method="post">
+        <input name="_method" type="hidden" value="patch">
+        <label for="name">Name:</label>
+        <input id="name" name="name" type="text">
+        <button type="submit">Submit</button>
+      </form>
+
+      <h3>The categories are:</h3>
+        <% if @recipe.categories == [] %>
+        <p>There are no categories for this recipe</p>
+        <% else %>
+        <ul>
+          <% @recipe.categories.each() do |category| %>
+          <li>
+            <% category.name()  %>
+          </li>
+          <% end %>
+        </ul>
+        <% end %>
+
+      <h4>Add a category below:</h4>
+
+
+         <form action="/recipe/add_category" method="post">
+           <input name="_method" type="hidden" value="patch">
+           <label for="name">Name:</label>
+           <input id="name" name="name" type="text">
+           <button type="submit">Submit</button>
+         </form>
+
+
+            <h4>Rate This Recipe:</h4>
+               <% if @recipe.rating == 0 %>
+                 <p>This recipe currently does not have a rating.</p>
+               <% else %>
+                  <p>This recipe's current rating is: <%= @recipe.rating %></p>
+                  <% end %>
+
+
+                  <h4>Add/Edit these instructions</h4>
+
+                  <form action="/recipe/<%= @recipe.id %>" method="post">
+                    <input name="_method" type="hidden" value="patch">
+                    <label for="instructions">Name:</label>
+                    <input id="instructions" name="instructions" type="text">
+                    <button type="submit">Submit</button>
+                  </form>
+
+
+               <form action="/recipe/add_rating" method="post">
+                 <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
+                 <label for="rating">Rating:</label>
+                 <input id="rating" name="rating" type="text">
+                 <button type="submit">Submit</button>
+               </form>
+
+               <form action='/recipe/<%= @recipe.id %>' method="post">
+                 <input type="hidden" name= "_method" value="delete">
+                 <label for="instructions">Name:</label>
+                 <button type="submit">Delete this recipe</button>
+               </form>
