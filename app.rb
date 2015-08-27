@@ -8,6 +8,10 @@ require('./lib/category')
 require('pg')
 require('pry')
 
+after do
+  ActiveRecord::Base.connection.close
+end
+
 get('/') do
   erb(:index)
 end
@@ -109,6 +113,15 @@ get('/ingredient/:id') do
   @ingredient = Ingredient.find(params.fetch("id"))
   erb(:ingredient_detail)
 end
+
+
+post('/add_ingredient') do
+  name = params.fetch("name")
+   Ingredient.new({:name => name})
+   @ingredients = Ingredient.all()
+   erb(:ingredient_detail)
+end
+
 
 delete('/category/:id') do
   id = params.fetch("id")

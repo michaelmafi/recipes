@@ -7,3 +7,11 @@
   <li><a href="/ingredient/<%= ingredient.id%>">Ingredient Name: <%= ingredient.name %></a></li>
   <% end %>
 </ul>
+
+<h4> Add an ingredient below:</h4>
+
+   <form action="/add_ingredient" method="post">
+     <label for="name">Name:</label>
+     <input id="name" name="name" type="text">
+     <button type="submit">Submit</button>
+   </form>

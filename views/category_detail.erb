@@ -1,0 +1,41 @@
+h1>Here are the details for <%= @category.name() %>:</h1>
+
+<a href="/categories">Go back to the category list</a>
+
+<h3>The recipes in this category are:</h3>
+<% if @category.recipes == [] %>
+  <p>There are no recipes in this category</p>
+<% else %>
+  <ul>
+    <% @category.recipes.each() do |recipe| %>
+    <li><%= recipe.name() %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>The following recipes have no category:</h3>
+
+<ul>
+<% @recipes_uncat.each() do |recipe| %>
+  <% if recipe.categories == [] %>
+    <li><%= recipe.name() %></li>
+  <% else %>
+  <% end %>
+<% end %>
+</ul>
+
+<h3>Type a name below to add the recipe to this category:</h3>
+
+<form action="/category/<%= @category.id() %>/add_recipe" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="category_add_recipe">Recipe To Add:</label>
+  <input id="category_add_recipe" name="category_add_recipe" type="text">
+
+  <button type="submit">Submit</button>
+</form>
+
+<form action='/category/<%= @category.id %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete this category</button>
+</form>

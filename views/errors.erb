@@ -1,0 +1,8 @@
+<h1>OOPS!</h1><h3>There were some errors:</h3>
+<ul>
+  <% @new_recipe.errors().full_messages().each() do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+
+<a href="/recipes">Return To Recipe List</a>

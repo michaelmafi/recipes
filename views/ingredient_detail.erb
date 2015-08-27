@@ -1,3 +1,14 @@
-h1>Here are the details for <% @ingredient.name() %>:</h1>
+h1>Here are the details for <% @ingredients.name() %>:</h1>
 
 <a href="/ingredients">Go back to ingredient list</a>
+
+<h3>The recipes with this ingredient are:</h3>
+ <% if @ingredients == [] %>
+   <p>There are no recipes with this ingredient</p>
+ <% else %>
+     <ul>
+       <% @ingredients.each() do |ingredient| %>
+       <li><%= ingredient.name() %></li>
+       <% end %>
+     </ul>
+     <% end %>

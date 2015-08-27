@@ -1,0 +1,17 @@
+<h1>Here are all of the categories:</h1>
+
+<a href="/">Return To Home</a>
+
+<ul>
+  <% @categories.each do |category| %>
+  <li><a href="/category/<%= category.id%>">Category Name: <%= category.name %></a></li>
+  <% end %>
+</ul>
+
+<h4> Add a category below:</h4>
+
+   <form action="/add_category" method="post">
+     <label for="name">Category:</label>
+     <input id="name" name="name" type="text">
+     <button type="submit">Submit</button>
+   </form>
